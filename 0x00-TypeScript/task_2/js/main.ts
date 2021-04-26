@@ -40,3 +40,15 @@ export const createEmployee = function(salary: number | string): Director | Teac
 	  return new Director();
 	}
 }
+
+export function isDirector(employee: DirectorInterface | TeacherInterface): boolean {
+	return (employee instanceof Director);
+  }
+  
+export function executeWork(employee: DirectorInterface | TeacherInterface): string {
+if (employee instanceof Director) {
+	return (employee.workDirectorTasks());
+} else if (employee instanceof Teacher){
+	return(employee.workTeacherTasks());
+}
+}
