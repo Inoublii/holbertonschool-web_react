@@ -1,0 +1,20 @@
+{
+	"name": "task_0",
+	"version": "1.0.0",
+	"description": "Webpack Basic Setup",
+	"main": "./src/index.js",
+	"dependencies": {
+		"jQuery": "^1.7.4",
+		"jquery": "^3.5.1"
+	},
+	"devDependencies": {
+		"webpack": "^5.35.1",
+		"webpack-cli": "^4.6.0"
+	},
+	"scripts": {
+		"build": "webpack --mode production ./src/index.js --output-filename ./main.js",
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"author": "Hafed Inoubli",
+	"license": "ISC"
+}
