@@ -44,11 +44,21 @@ export const createEmployee = function(salary: number | string): Director | Teac
 export function isDirector(employee: DirectorInterface | TeacherInterface): boolean {
 	return (employee instanceof Director);
   }
-  
+
 export function executeWork(employee: DirectorInterface | TeacherInterface): string {
 if (employee instanceof Director) {
 	return (employee.workDirectorTasks());
 } else if (employee instanceof Teacher){
 	return(employee.workTeacherTasks());
 }
+}
+
+type Subjects = "Math" | "History";
+
+export function teachClass(todayClass:Subjects): string {
+  if (todayClass === "Math") {
+    return `Teaching Math`;
+  } else if (todayClass === "History") {
+    return `Teaching History`;
+  }
 }
