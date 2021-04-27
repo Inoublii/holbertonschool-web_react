@@ -12,6 +12,8 @@ export default function Notifications() {
 			style={{
 				color: '#3a3a3a',
 				fontWeight: 'bold',
+				background: 'none',
+				border: 'none',
 				fontSize: '15px',
 				position: 'absolute',
 				right: '2px',
