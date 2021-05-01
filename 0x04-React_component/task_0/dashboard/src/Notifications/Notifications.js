@@ -4,6 +4,8 @@ import closeIcon from '../assets/close-icon.png';
 import { getLatestNotification } from '../utils/utils';
 import NotificationItem from './NotificationItem';
 import PropTypes from 'prop-types';
+import NotificationItemShape from './NotificationItemShape';
+
 
 export default class Notifications extends Component {
 	render() {
@@ -68,9 +70,13 @@ export default class Notifications extends Component {
 
 Notifications.protoTypes = {
 	displayDrawer: PropTypes.bool,
+	listNotifications: PropTypes.arrayOf(NotificationItemShape),
+
 };
 
 Notifications.defaultProps = {
-	displayDrawer: true,
+	displayDrawer: false,
+	listNotifications: [],
+
 };
 

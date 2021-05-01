@@ -26,16 +26,13 @@ describe("Testing the <App /> Component", () => {
 		expect(wrapper.contains(<Footer />)).to.equal(true);
 	});
 
-	it("<App /> contains the <Notifications /> Component", () => {
-		expect(wrapper.contains(<Notifications />)).to.equal(true);
-	});
 
 	it("<App /> contains the <Header /> Component", () => {
 		expect(wrapper.contains(<Header />)).to.equal(true);
 	});
 
 	it("<App /> contains <CourseList />", () => {
-		expect(wrapper.contains(<CourseList />)).to.equal(true);
+		expect(wrapper.find(CourseList)).to.have.lengthOf(0);
 	});
 
 
@@ -51,5 +48,5 @@ describe("Testing the <App /> when isLoggedIn is true", () => {
 	let component = shallow(<App {...props} />);
 
 	expect(component.contains(<Login />)).to.equal(false);
-	expect(component.contains(<CourseList />)).to.equal(true);
+	expect(component.find(CourseList)).to.have.lengthOf(1);
 });

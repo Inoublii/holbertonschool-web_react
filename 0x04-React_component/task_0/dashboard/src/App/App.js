@@ -53,5 +53,5 @@ App.propTypes = {
   isLoggedIn: PropTypes.bool
 };
 App.defaultProps = {
-  isLoggedIn: true,
+  isLoggedIn: false,
 };
