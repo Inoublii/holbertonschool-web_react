@@ -7,6 +7,8 @@ import Notifications from '../Notifications/Notifications.js';
 import CourseList from '../CourseList/CourseList';
 import PropTypes from 'prop-types'; 
 import { getLatestNotification } from '../utils/utils';
+import BodySection from '../BodySection/BodySection'
+import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBottom'
 
 
 export default class App extends Component {
@@ -53,12 +55,24 @@ export default class App extends Component {
 
       {
             isLoggedIn === false &&
+            <BodySectionWithMarginBottom title="Log in to continue">
             <Login />
+            </BodySectionWithMarginBottom>
+
           }
           {
             isLoggedIn === true &&
+            <BodySectionWithMarginBottom title="Course list">
+
             <CourseList listCourses={listCourses} />
+            </BodySectionWithMarginBottom>
+
           }
+             <BodySection title="News from the school">
+            <p>
+            Apartments simplicity or understood do it we. Song such eyes had and off.
+             </p>
+          </BodySection>
       <Footer />
       </div>
       </Fragment>

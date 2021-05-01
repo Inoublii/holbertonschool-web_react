@@ -2,7 +2,6 @@
 display: flex;
 flex-direction: row;
 justify-content: left;
-border-bottom: 3px solid var(--hred);
 }
 
 .App-header h1 {
