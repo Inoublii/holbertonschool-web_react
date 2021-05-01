@@ -35,9 +35,17 @@ describe("Testing the <App /> Component", () => {
 		expect(wrapper.find(CourseList)).to.have.lengthOf(0);
 	});
 
+	it('verify that when the keys "control" and "h" are pressed the "logOut" function is called', (done) => {
+		const logOut = jest.fn(() => void (0));
+		shallow(<App />);
+		window.alert = logOut;
+		events.keydown({ keyCode: 72, ctrlKey: true });
+		expect(logOut).toHaveBeenCalled()
+		done();
+	
 
 
-
+	});
 });
 describe("Testing the <App /> when isLoggedIn is true", () => {
 

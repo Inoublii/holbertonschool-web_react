@@ -10,6 +10,22 @@ import { getLatestNotification } from '../utils/utils';
 
 
 export default class App extends Component {
+  constructor(props) {
+    super(props);
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  componentDidMount() {
+    document.addEventListener("keydown", this.handleClick);
+  }
+
+  handleClick(event) {
+    if (event.keyCode === 72 && event.ctrlKey) {
+      alert('Logging you out');
+      this.props.logOut();
+    }
+  }
+
   render() {
     let {
       isLoggedIn,
@@ -50,8 +66,11 @@ export default class App extends Component {
   };
 };
 App.propTypes = {
-  isLoggedIn: PropTypes.bool
+  isLoggedIn: PropTypes.bool,
+  logOut: PropTypes.func
+
 };
 App.defaultProps = {
   isLoggedIn: false,
+  logOut: () => void(0)
 };
