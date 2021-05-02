@@ -12,6 +12,11 @@ export default class Notifications extends Component {
 		super(props);
 		this.markAsRead = this.markAsRead.bind(this);
 	}
+	shouldComponentUpdate(nextProps) {
+		if (this.props.listNotifications.length < nextProps.listNotifications.length) return true
+		return false;
+	  }
+	
 
 	markAsRead(id) {
 		console.log(`Notification ${id} has been marked as read`);
@@ -19,6 +24,7 @@ export default class Notifications extends Component {
 	render() {
 		let {
 			displayDrawer,
+			listNotifications,
 		} = this.props;
 
 		return (
@@ -32,15 +38,15 @@ export default class Notifications extends Component {
 						<button
 							style={{
 								color: '#3a3a3a',
+								outline: 'none',
 								fontWeight: 'bold',
 								background: 'none',
+								position: 'absolute',
 								border: 'none',
 								fontSize: '15px',
-								position: 'absolute',
 								right: '3px',
 								top: '3px',
 								cursor: 'pointer',
-								outline: 'none',
 							}}
 							aria-label="Close"
 							onClick={(e) => {
@@ -56,19 +62,9 @@ export default class Notifications extends Component {
 							Here is the list of notifications
 						</p>
 						<ul>
-							<NotificationItem
-								type="default"
-								value="New course available"
-							/>
-							<NotificationItem
-								type="urgent"
-								value="New resume available"
-							/>
-							<NotificationItem
-								type="urgent"
-								html={{__html: getLatestNotification()}}
-							/>
-						</ul>
+              {this.props.listNotifications.length === 0 ? (<NotificationItem id={0} value="No new notification for now" type='no-new' markAsRead={this.markAsRead} />) : <></>}
+              {this.props.listNotifications.map((list) => (<NotificationItem id={list.id} key={list.id} type={list.type} value={list.value} html={list.html} markAsRead={this.markAsRead} />))}
+            </ul>
 					</div>
 				}
 			</div>
