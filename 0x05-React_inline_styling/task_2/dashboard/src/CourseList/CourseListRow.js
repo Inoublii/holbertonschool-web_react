@@ -6,7 +6,7 @@ export default function CourseListRow({ isHeader, textFirstCell, textSecondCell 
   let trContent = '';
   let bodyStyle = { backgroundColor: '#f5f5f5ab' };
   let headerStyle = { backgroundColor: '#deb5b545' };
-  const style = isHeader ? headerStyle : bodyStyle;
+  const styleInLine = isHeader ? headerStyle : bodyStyle;
 
 
   if (isHeader) {

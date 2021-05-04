@@ -34,7 +34,7 @@ describe('Test CourseList.js', () => {
   });
   it('verify that when you pass a list of courses, the component renders it correctly', (done) => {
     const wrapper = shallow(<CourseList listCourses={listCourses}/>);
-    expect(wrapper.find(CourseListRow).first().html()).to.equal('<tr style="background-color:#deb5b545"><th colSpan="2">Available courses</th></tr>');
+    expect(wrapper.find(CourseListRow).first().html()).to.equal('<tr style=\"background-color:#deb5b545\"><th colSpan=\"2\" class=\"thFirt_12to336-o_O-thTd_c1hu7a\">Available courses</th></tr>');
     expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
     done();
   });
