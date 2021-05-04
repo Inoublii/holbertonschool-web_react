@@ -3,10 +3,20 @@ import { shallow, configure } from 'enzyme';
 import { expect } from 'chai';
 import CourseListRow from './CourseListRow'
 import Adapter from 'enzyme-adapter-react-16';
+import { StyleSheetTestUtils } from "aphrodite";
 
 configure({adapter: new Adapter()});
 
 describe('Test CourseListRow.js', () => {
+	beforeAll(() => {
+		StyleSheetTestUtils.suppressStyleInjection();
+	  });
+
+	  afterAll(() => {
+		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
+	  });
+
+
   it('CourseListRow without crashing', (done) => {
     expect(shallow(<CourseListRow textFirstCell='test' />).exists());
     done();
