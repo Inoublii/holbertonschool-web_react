@@ -8,7 +8,11 @@ import { StyleSheetTestUtils } from "aphrodite";
 
 
 configure({adapter: new Adapter()});
-
+  const listCourses = [
+    { id: 1, name: 'ES6', credit: 60 },
+    { id: 2, name: 'Webpack', credit: 20 },
+    { id: 3, name: 'React', credit: 40 }
+  ];
   beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
   });
@@ -18,23 +22,20 @@ configure({adapter: new Adapter()});
   });
 
 describe('Test CourseList.js', () => {
-	it("Test if <CourseList /> is rendered without crashing", () => {
-		let component = shallow(<CourseList shouldRender />);
-
-		expect(component.render()).to.not.be.an("undefined");
-	  });
-
-	  it("Test tthat when you pass a list of courses, the component renders it correctly", () => {
-		let component = shallow(<CourseList shouldRender {...props} />);
-		expect(component.render()).to.not.be.an("undefined");
-	  });
-  it('verify that when you pass a list of courses, the component renders it correctly', (done) => {
-	const props  = [
-		{ id: 1, name: 'ES6', credit: 60 },
-		{ id: 2, name: 'Webpack', credit: 20 },
-		{ id: 3, name: 'React', credit: 40 }
-	  ];
-	  let component = shallow(<CourseList shouldRender {...props} />);
-	  expect(component.render()).to.not.be.an("undefined");
-	});
+  it('CourseList without crashing', (done) => {
+    expect(shallow(<CourseList />).exists());
+    done();
   });
+
+  it('renders 5 diferent rows', (done) => {
+    const wrapper = shallow(<CourseList listCourses={listCourses}/>);
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
+    done();
+  });
+  it('verify that when you pass a list of courses, the component renders it correctly', (done) => {
+    const wrapper = shallow(<CourseList listCourses={listCourses}/>);
+    expect(wrapper.find(CourseListRow).first().html()).to.equal('<tr style="background-color:#deb5b545"><th colSpan="2">Available courses</th></tr>');
+    expect(wrapper.find(CourseListRow)).to.have.lengthOf(5);
+    done();
+  });
+});
