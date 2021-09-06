@@ -40,4 +40,31 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 		wrapper.instance().markAsRead(1);
 		expect(console.log).toHaveBeenCalled()
 		done();    	  });
+		it('Verify that clicking on the menu item calls handleDisplayDrawer', () => {
+			const handleDisplayDrawer = jest.fn();
+			const handleHideDrawer = jest.fn();
+			const wrapper = shallow(<Notifications displayDrawer handleDisplayDrawer={handleDisplayDrawer} handleHideDrawer={handleHideDrawer} />);
+			wrapper.find('#menuItem').simulate('click');
+			expect(handleDisplayDrawer).toHaveBeenCalled();
+			jest.restoreAllMocks();
+		  });
+
+		  it('Verify that clicking on the button calls handleHideDrawer', () => {
+			const handleDisplayDrawer = jest.fn();
+			const handleHideDrawer = jest.fn();
+			const wrapper = shallow(<Notifications displayDrawer handleDisplayDrawer={handleDisplayDrawer} handleHideDrawer={handleHideDrawer} />);
+			wrapper.find('#closeButton').simulate('click');
+			expect(handleHideDrawer).toHaveBeenCalled();
+			jest.restoreAllMocks();
+		  })
+		  it('Verify that the default state for displayDrawer is false', () => {
+			const wrapper = shallow(<App />);
+			expect(wrapper.state().displayDrawer).toEqual(false);
+		  });
+
+		  it('Verify that after calling handleDisplayDrawer, the state should now be true', () =>{
+			const wrapper = shallow(<App />);
+			wrapper.instance().handleDisplayDrawer();
+			expect(wrapper.state().displayDrawer).toEqual(true);
+		  });
 });
