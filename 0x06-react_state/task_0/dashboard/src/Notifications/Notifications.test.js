@@ -4,11 +4,36 @@ import Adapter from 'enzyme-adapter-react-16';
 import { shallow, configure } from 'enzyme';
 import Notifications from './Notifications';
 import NotificationItem from './NotificationItem';
+import { getLatestNotification } from '../utils/utils';
 import { StyleSheetTestUtils } from "aphrodite";
 
 configure({adapter: new Adapter()});
 
 describe("Testing the <Notifications /> wrapperTwo", () => {
+	let i = 0;
+	let listNotifications = [
+		{
+			id: i++,
+			type: "default",
+			value: "New course available",
+		},		{
+			id: i++,
+			type: "urgent",
+			value: "New resume available",
+		},
+		{
+			id: i++,
+			type: "urgent",
+			html: {__html: getLatestNotification()},
+		}
+	];
+	let props2 = {
+		displayDrawer: true,
+		listNotifications: listNotifications,
+	};
+	let props1 = {
+		displayDrawer: false,
+	};
 	beforeAll(() => {
 		StyleSheetTestUtils.suppressStyleInjection();
 	  });
@@ -17,12 +42,7 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 		StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
 	  });
 
-	let props1 = {
-		displayDrawer: false,
-	};
-	let props2 = {
-		displayDrawer: true,
-	};
+
 	let wrapperOne;
 	let wrapperTwo;
 
@@ -49,5 +69,22 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 		expect(console.log).toHaveBeenCalledWith('Notification 3 has been marked as read');
 		jest.restoreAllMocks();
 	  });
+
+it("Verify that clicking on the button calls handleHideDrawer", () => {
+	const mockDisplay = jest.fn(() => {});
+	const mockHide = jest.fn(() => {});
+
+	let props = {
+		...props2,
+		displayDrawer: true,
+		handleDisplayDrawer: mockDisplay,
+		handleHideDrawer: mockHide,
+	};
+
+	let wrapper = shallow(<Notifications {...props} />);
+
+	wrapper.find('button').at(0).simulate('click');
+
+});
 
 });

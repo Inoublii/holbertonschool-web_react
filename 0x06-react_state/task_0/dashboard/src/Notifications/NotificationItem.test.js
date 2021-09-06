@@ -55,7 +55,8 @@ describe("Testing <NotificationItem /> Component", () => {
 			html: { __html: "<p>test</p>"},
 			markAsRead: (id) => { console.log(`Notification ${id} has been marked as read`)}
 		};
-gi		console.log = jest.fn();
+		wrapper = shallow(<NotificationItem {...props} />);
+		console.log = jest.fn();
 		wrapper.find('li').simulate('click');
 		expect(console.log.mock.calls.length).to.equal(1);
 	});
