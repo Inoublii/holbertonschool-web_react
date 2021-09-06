@@ -78,15 +78,28 @@ describe(" verify <App /> Is isLoggedIn", () => {
       isLoggedIn: true,
     };
 
+
     const wrapper = shallow(<App {...props} />);
 
     expect(wrapper.contains(<Login />)).to.equal(false);
     expect(wrapper.find(CourseList)).to.have.lengthOf(1);
+});
 
 
-
-
+  it('Verify that after calling handleDisplayDrawer, the state should now be true', () =>{
+    const wrapper = shallow(<App />);
+    wrapper.instance().handleDisplayDrawer();
+    expect(wrapper.state().displayDrawer).to.equal(true);
   });
+
+  it('Verify that after calling handleHideDrawer, the state is updated to be false', () => {
+    const wrapper = shallow(<App />);
+    wrapper.instance().handleDisplayDrawer();
+    expect(wrapper.state().displayDrawer).to.equal(true);
+    wrapper.instance().handleHideDrawer();
+    expect(wrapper.state().displayDrawer).to.equal(false);
+});
+
   test("verify logOut alerts with correct string", () => {
     const myLogOut = jest.fn(() => undefined);
     const myAlert = jest.spyOn(global, "alert");

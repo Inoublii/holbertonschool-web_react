@@ -34,8 +34,11 @@ export default class Notifications extends Component {
 		return (
 			<div className="NotificationsComponent">
         <div className={css(styles.menuItem)}
-		onClick={() => handleDisplayDrawer()}
-		>Your notifications</div>
+		onClick={() => handleDisplayDrawer()}>
+		{
+		  !displayDrawer && 'Your notifications'
+		}
+		</div>
 				{
 					displayDrawer &&
 					<div className={css(styles.Notifications)}>
