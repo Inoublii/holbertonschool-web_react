@@ -144,57 +144,7 @@ export default class Notifications extends Component {
 		  }
 		}
 	  });
-const styles = StyleSheet.create({
-	Notifications: {
-	  border: "2px solid #e1484c",
-	  borderStyle: "dashed",
-	  padding: "10px",
-	  textAlign: "left",
-	  flexDirection: 'column',
-	  position: 'absolute',
-	  right: '12px',
-	  flexWrap: 'wrap',
-	  alignItems: 'flex-end',
-	  '@media (max-width: 900px)': {
-		border: "2px  #e1484c",
 
-		position: 'absolute !important',
-		top: '0',
-		right: '0',
-		left: '0',
-		width: '100%',
-		height: '100%',
-
-		background: 'white',
-		padding: '6px 12px',
-		fontSize: '20px',
-	},
-
-
-	},
-	menuItem: {
-	  textAlign: "right",
-	  fontWeight: "bold",
-	  fontFamily: "none",
-	  marginBottom: "10px",
-	  ':hover': {
-		animationName: [opacityFrames, bounceFrames],
-		animationDuration: '1s, .5s',
-		animationIterationCount: '3',
-	}
-
-	},
-	notificationBox: {
-	  marginRight: "60px",
-	},
-	mediumUl: {
-		'@media (max-width: 900px)': {
-		  fontSize: '20px',
-		  padding: '0',
-		}
-	  }
-
-  });
 
 
 Notifications.protoTypes = {
