@@ -82,16 +82,9 @@ describe(" verify <App /> Is isLoggedIn", () => {
 
     expect(wrapper.contains(<Login />)).to.equal(false);
     expect(wrapper.find(CourseList)).to.have.lengthOf(1);
-  it("verify that the default state for displayDrawer is false & after calling handleDisplayDrawer, the state.displayDrawer should now be true", () => {
-	expect(wrapper.state('displayDrawer')).to.equal(false);
-	wrapper.instance().handleDisplayDrawer();
-	expect(wrapper.state('displayDrawer')).to.equal(true);
-});
 
-  it("verify that after calling handleHideDrawer, the state.displayDrawer is updated to be false", () => {
-	wrapper.instance().handleHideDrawer();
-	expect(wrapper.state('displayDrawer')).to.equal(false);
-});
+
+
 
   });
   test("verify logOut alerts with correct string", () => {
