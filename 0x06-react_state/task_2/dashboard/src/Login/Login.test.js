@@ -22,9 +22,6 @@ describe("Testing the <Login /> Component", () => {
 	});
 
 
-	it("<Login /> render 2 inputs", () => {
-		expect(wrapper.find('input')).to.have.lengthOf(2);
-	});
 	it("<Login /> is rendered without crashing", () => {
 		expect(wrapper.render()).to.not.be.an('undefined');
 	});
@@ -34,13 +31,13 @@ describe("Testing the <Login /> Component", () => {
 	});
 	it('Test to verify that the submit button is disabled by default', () => {
 		const wrapper = shallow(<Login />);
-		expect(wrapper.find('input').at(2).props().disabled).toEqual(true);
+		expect(wrapper.find('input').at(2).props().disabled)==(true);
 	  });
 
 	  it('Test to verify that after changing the value of the two inputs, the button is enabled', () => {
 		const wrapper = shallow(<Login />);
-		wrapper.find('input').at(0).simulate('change', { target: { name: 'email', value: 'yulyzulu@hotmail.com'} });
+		wrapper.find('input').at(0).simulate('change', { target: { name: 'email', value: 'inoublii@hotmail.com'} });
 		wrapper.find('input').at(1).simulate('change', { target: { name: 'password', value: '1234'} });
-		expect(wrapper.find('input').at(2).props().disabled).toEqual(false);
+		expect(wrapper.find('input').at(2).props().disabled)==(false);
 	  });
 });
