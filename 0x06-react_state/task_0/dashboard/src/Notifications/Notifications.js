@@ -155,6 +155,9 @@ Notifications.protoTypes = {
 Notifications.defaultProps = {
 	displayDrawer: false,
 	listNotifications: [],
+	handleDisplayDrawer: () => {},
+	handleHideDrawer: () => {}
+
 
 };
 
