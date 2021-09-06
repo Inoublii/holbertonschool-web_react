@@ -34,37 +34,20 @@ describe("Testing the <Notifications /> wrapperTwo", () => {
 
 
 
-	it('mockup the "console.log" function and Check that when calling the function "markAsRead" on an instance of the component', (done) => {
-		const wrapper = shallow(<Notifications displayDrawer={true} />);
+	it('Verify that when listNotifications is empty the message Here is the list of notifications is not displayed', () => {
+		const array = [];
+		const wrapper = shallow(<Notifications displayDrawer listNotifications={array} />);
+		expect(wrapper.find('NotificationItem').html()).not.toEqual('<li data-notification-type="default" class="blue_1tsdo2i-o_O-blueSmall_1wblo9d">Here is the list of notifications</li>');
+	  });
+
+	  it('Check that when calling the function markAsRead on an instance of the component, the spy is being called with the right message', () => {
+		const wrapper = shallow(<Notifications displayDrawer />);
 		console.log = jest.fn();
-		wrapper.instance().markAsRead(1);
-		expect(console.log).toHaveBeenCalled()
-		done();    	  });
-		it('Verify that clicking on the menu item calls handleDisplayDrawer', () => {
-			const handleDisplayDrawer = jest.fn();
-			const handleHideDrawer = jest.fn();
-			const wrapper = shallow(<Notifications displayDrawer handleDisplayDrawer={handleDisplayDrawer} handleHideDrawer={handleHideDrawer} />);
-			wrapper.find('#menuItem').simulate('click');
-			expect(handleDisplayDrawer).toHaveBeenCalled();
-			jest.restoreAllMocks();
-		  });
+		const instance = wrapper.instance();
+		const id = 3;
+		instance.markAsRead(id);
+		expect(console.log).toHaveBeenCalledWith('Notification 3 has been marked as read');
+		jest.restoreAllMocks();
+	  });
 
-		  it('Verify that clicking on the button calls handleHideDrawer', () => {
-			const handleDisplayDrawer = jest.fn();
-			const handleHideDrawer = jest.fn();
-			const wrapper = shallow(<Notifications displayDrawer handleDisplayDrawer={handleDisplayDrawer} handleHideDrawer={handleHideDrawer} />);
-			wrapper.find('#closeButton').simulate('click');
-			expect(handleHideDrawer).toHaveBeenCalled();
-			jest.restoreAllMocks();
-		  })
-		  it('Verify that the default state for displayDrawer is false', () => {
-			const wrapper = shallow(<App />);
-			expect(wrapper.state().displayDrawer).toEqual(false);
-		  });
-
-		  it('Verify that after calling handleDisplayDrawer, the state should now be true', () =>{
-			const wrapper = shallow(<App />);
-			wrapper.instance().handleDisplayDrawer();
-			expect(wrapper.state().displayDrawer).toEqual(true);
-		  });
 });
