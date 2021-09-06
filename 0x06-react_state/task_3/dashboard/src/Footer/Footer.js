@@ -7,19 +7,33 @@ function Footer() {
 	return (
 		<AppContext.Consumer>
 		  {
-			(context) => {
-			  return (
-
-		<footer>
-		<p>Copyright {getFullYear()} - {getFooterCopy()}</p>
-		</footer>
-		);
-	}
+		   (context) => {
+			return (
+			  <div className={css(styles.footer)}>
+				<hr className={css(styles.hrColor)} />
+				<i>
+				  Copyright {getFullYear()} - {getFooterCopy(true)}
+				</i>
+				{context.user.isLoggedIn && <a href="inoublii.github.io"> Contact us</a> }
+			  </div>
+			);
+		  }
+		}
+	  </AppContext.Consumer>
+	);
   }
-</AppContext.Consumer>
-);
-}
 
+  const styles = StyleSheet.create({
+	hrColor: {
+	  backgroundColor: '#e0344b',
+	  border: 'none',
+	  height: 2
+	},
 
+	footer: {
+	  textAlign: 'center',
+	}
+
+  });
 
 export default Footer;
