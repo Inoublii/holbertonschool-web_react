@@ -12,9 +12,12 @@ export default class Notifications extends Component {
 		this.markAsRead = this.markAsRead.bind(this);
 	}
 	shouldComponentUpdate(nextProps) {
-		if (this.props.listNotifications.length < nextProps.listNotifications.length) return true
-		return false;
-	  }
+		return (
+			nextProps.listNotifications.length > this.props.listNotifications.length ||
+			nextProps.displayDrawer !== this.props.displayDrawer
+		  );
+		}
+
 
 
 	markAsRead(id) {
