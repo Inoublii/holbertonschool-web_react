@@ -11,7 +11,6 @@ import BodySectionWithMarginBottom from '../BodySection/BodySectionWithMarginBot
 import { StyleSheet, css } from 'aphrodite';
 import { user, logOut } from './AppContext.js';
 import AppContext from './AppContext.js';
-import { connect } from "react-redux";
 
 
 export default class App extends Component {
@@ -144,10 +143,3 @@ export default class App extends Component {
   ///isLoggedIn: false,
   ///logOut: () => void(0)
 ///};
-export const mapStateToProps = (state) => {
-	return {
-	  isLoggedIn: state.get("isUserLoggedIn"),
-	};
-  };
-
-  export default connect(mapStateToProps)(App);
