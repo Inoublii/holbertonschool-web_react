@@ -25,8 +25,6 @@ export  class App extends Component {
 		displayDrawer: false,
 	  };
     this.handleClick = this.handleClick.bind(this);
-	this.handleDisplayDrawer = this.handleDisplayDrawer.bind(this);
-    this.handleHideDrawer = this.handleHideDrawer.bind(this);
 	this.logIn = this.logIn.bind(this);
     this.logOut = this.logOut.bind(this);
     this.state = {
@@ -43,12 +41,8 @@ export  class App extends Component {
   }
 
 
-  handleDisplayDrawer() {
-    this.setState({ displayDrawer: true });
-  }
-  handleHideDrawer() {
-    this.setState({ displayDrawer: false });
-  }
+
+
 
   componentDidMount() {
     document.addEventListener("keydown", this.handleClick);
@@ -103,8 +97,7 @@ export  class App extends Component {
 			listNotifications={listNotifications}
 			displayDrawer={displayDrawer}
 			handleDisplayDrawer={displayNotificationDrawer}
-			handleDisplayDrawer={this.handleDisplayDrawer}
-			handleHideDrawer={this.handleHideDrawer}
+			handleHideDrawer={hideNotificationDrawer}
 			markNotificationAsRead={this.markNotificationAsRead}
 
 		  />
