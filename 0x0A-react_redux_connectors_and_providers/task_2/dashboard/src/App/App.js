@@ -12,9 +12,8 @@ import { StyleSheet, css } from 'aphrodite';
 import { user, logOut } from './AppContext.js';
 import AppContext from './AppContext.js';
 import { connect } from "react-redux";
-import {
-	displayNotificationDrawer,
-	hideNotificationDrawer,
+import {displayNotificationDrawer,hideNotificationDrawer,loginRequest,logout,
+
   } from "../actions/uiActionCreators";
 
 
@@ -160,6 +159,8 @@ export const mapStateToProps = (state) => {
   const mapDispatchToProps = {
 	displayNotificationDrawer,
 	hideNotificationDrawer,
+	login: loginRequest,
+	logout,
   };
 
   export default connect(mapStateToProps, mapDispatchToProps)(App);
