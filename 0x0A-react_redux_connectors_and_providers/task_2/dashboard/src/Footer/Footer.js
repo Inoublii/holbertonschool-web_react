@@ -2,8 +2,10 @@ import React from 'react';
 import { getFooterCopy, getFullYear } from '../utils/utils';
 import AppContext from '../App/AppContext';
 import { StyleSheet, css } from 'aphrodite';
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
 
-function Footer() {
+export function Footer({ user }) {
 	return (
 		<AppContext.Consumer>
 		  {
@@ -36,4 +38,18 @@ function Footer() {
 
   });
 
-export default Footer;
+  Footer.defaultProps = {
+	user: null,
+  };
+
+  Footer.propTypes = {
+	user: PropTypes.object,
+  };
+
+  const mapStateToProps = (state) => {
+	return {
+	  user: state.get("user"),
+	};
+  };
+
+  export default connect(mapStateToProps, null)(Footer);
