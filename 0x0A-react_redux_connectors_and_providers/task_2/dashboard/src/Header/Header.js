@@ -2,8 +2,11 @@ import React from 'react';
 import logo from '../assets/logo.jpg';
 import { StyleSheet, css } from 'aphrodite';
 import AppContext from '../App/AppContext';
+import { connect } from "react-redux";
+import { logout } from "../actions/uiActionCreators";
+import PropTypes from "prop-types";
 
-export default class Header extends React.Component {
+export class Header extends React.Component {
 	constructor(props) {
 		super(props);
 	  }
@@ -48,4 +51,24 @@ const style = StyleSheet.create({
 	}
   });
 
+  Header.contextType = AppContext;
 
+  Header.defaultProps = {
+	user: null,
+	logout: () => {},
+  };
+
+  Header.propTypes = {
+	user: PropTypes.object,
+	logout: PropTypes.func,
+  };
+
+  const mapStateToProps = (state) => {
+	return {
+	  user: state.get("user"),
+	};
+  };
+  const mapDispatchToProps = {
+	logout,
+  };
+  export default connect(mapStateToProps, mapDispatchToProps)(Header);
