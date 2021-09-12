@@ -12,6 +12,10 @@ import { StyleSheet, css } from 'aphrodite';
 import { user, logOut } from './AppContext.js';
 import AppContext from './AppContext.js';
 import { connect } from "react-redux";
+import {
+	displayNotificationDrawer,
+	hideNotificationDrawer,
+  } from "../actions/uiActionCreators";
 
 
 export  class App extends Component {
@@ -68,12 +72,17 @@ export  class App extends Component {
     const newListNotifications = this.state.listNotifications.filter(item => item.id !== id);
     this.setState({ listNotifications: newListNotifications });
   }
+
   render() {
-    let {
+    const { user, logOut, listNotifications } = this.state;
+
+    const {
       isLoggedIn,
+      displayDrawer,
+      displayNotificationDrawer,
+      hideNotificationDrawer,
     } = this.props;
 
-    const { displayDrawer, user, logOut, listNotifications } = this.state;
     const value = { user, logOut };
 
     let  listCourses = [
@@ -93,6 +102,7 @@ export  class App extends Component {
 		  <Notifications
 			listNotifications={listNotifications}
 			displayDrawer={displayDrawer}
+			handleDisplayDrawer={displayNotificationDrawer}
 			handleDisplayDrawer={this.handleDisplayDrawer}
 			handleHideDrawer={this.handleHideDrawer}
 			markNotificationAsRead={this.markNotificationAsRead}
@@ -134,20 +144,29 @@ export  class App extends Component {
 	  height: '2px'
 	}
   });
-///
-///App.propTypes = {
-  ///isLoggedIn: PropTypes.bool,
-  ///logOut: PropTypes.func
+  App.defaultProps = {
+	isLoggedIn: false,
+	displayDrawer: false,
+	displayNotificationDrawer: () => {},
+	hideNotificationDrawer: () => {},
+  };
 
-///};
-///App.defaultProps = {
-  ///isLoggedIn: false,
-  ///logOut: () => void(0)
-///};
+  App.propTypes = {
+	isLoggedIn: PropTypes.bool,
+	displayDrawer: PropTypes.bool,
+	displayNotificationDrawer: PropTypes.func,
+	hideNotificationDrawer: PropTypes.func,
+  };
 export const mapStateToProps = (state) => {
 	return {
 	  isLoggedIn: state.get("isUserLoggedIn"),
+	  displayDrawer: state.get("isNotificationDrawerVisible"),
 	};
   };
 
-  export default connect(mapStateToProps)(App);
+  const mapDispatchToProps = {
+	displayNotificationDrawer,
+	hideNotificationDrawer,
+  };
+
+  export default connect(mapStateToProps, mapDispatchToProps)(App);
