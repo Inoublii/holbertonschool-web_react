@@ -1,72 +1,36 @@
 /**
  * @jest-environment jsdom
 */
-import Adapter from 'enzyme-adapter-react-16';
-import React from 'react';
-import { shallow, mount, configure } from 'enzyme';
-import Header from './Header.js';
-import { StyleSheetTestUtils } from 'aphrodite';
-import { user, logOut} from '../App/AppContext';
-import AppContext from '../App/AppContext.js';
-configure({adapter: new Adapter()});
+import { shallow, mount } from "enzyme";
+import React from "react";
+import { Header } from "./Header";
+import { StyleSheetTestUtils } from "aphrodite";
+import AppContext, { user, logOut } from "../App/AppContext";
 
-beforeEach(() => {
+const USER = { email: "inoublii@gmail.com", password: "123456" };
+
+describe("<Header />", () => {
+  beforeAll(() => {
     StyleSheetTestUtils.suppressStyleInjection();
-});
-
-afterEach(() => {
+  });
+  afterAll(() => {
     StyleSheetTestUtils.clearBufferAndResumeStyleInjection();
-});
-
-describe('Test <Header />', () => {
-  it('Should render without crashing', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user, logOut }}>
-        <Header />
-      </AppContext.Provider>
-    );
-    expect(wrapper.exists()).toBeTruthy();
   });
 
-  it('Verify that the logoutSection is not created with a default context value', () => {
-    const wrapper = mount(
-      <AppContext.Provider value={{ user, logOut }}>
-        <Header />
-      </AppContext.Provider>
-    );
-    expect(wrapper.find('#logoutSection').exists()).not.toBeTruthy();
+  it("Header renders without crashing", () => {
+    const wrapper = shallow(<Header />);
+    expect(wrapper.exists()).toEqual(true);
+  });
+  it("mounts the Header component with a user defined (isLoggedIn is true and an email is set). The logoutSection is created", () => {
+    const wrapper = shallow(<Header user={USER} />);
+
+    expect(wrapper.find("#logoutSection")).toHaveLength(1);
+  });
+  it("mounts the Header component with a default context value. The logoutSection is not created", () => {
+    const wrapper = shallow(<Header />);
+
+    expect(wrapper.find("#logoutSection")).toHaveLength(0);
   });
 
-  it('Verify that the logoutSection is not created with a user defined', () => {
-    const user1 = {
-      email: 'hafed.inoubli@gmail.com',
-      password: 'inin123',
-      isLoggedIn: true
-    };
-    const wrapper = mount(
-      <AppContext.Provider value={{ user: user1, logOut }}>
-        <Header />
-      </AppContext.Provider>
-    );
-    expect(wrapper.find('#logoutSection').exists()).toBeTruthy();
-  });
 
-  it('Verify that the logoutSection is not created with a user defined and the logOut is linked to a spy', () => {
-    const spy = jest.fn();
-    const user1 = {
-      email: 'hafed.inoubli@gmail.com',
-      password: 'inin123',
-      isLoggedIn: true
-    };
-    const wrapper = mount(
-      <AppContext.Provider value={{ user: user1, logOut: spy }}>
-        <Header />
-      </AppContext.Provider>
-    );
-    expect(wrapper.find('#logoutSection').exists()).toBeTruthy();
-    wrapper.find('#logoutSection span i').simulate('click');
-    expect(spy).toHaveBeenCalled();
-
-    jest.restoreAllMocks();
-  });
 });

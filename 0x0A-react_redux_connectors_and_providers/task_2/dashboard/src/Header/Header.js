@@ -11,16 +11,15 @@ export class Header extends React.Component {
 		super(props);
 	  }
 	  render() {
-		const { user, logOut } = this.context;
+		const { user, logout } = this.props;
 		return (
 			<header className={css(style.appHeader)}>
       <img src={logo} className={css(style.appLogo)} alt='logo' />
       <h1 className={css(style.appHeaderH1)}>School dashboard</h1>
-	  {
-            user.isLoggedIn && (
-              <p id="logoutSection">
+        {user && (
+			<p id="logoutSection">
                 Welcome <b>{user.email}</b>
-                  <span onClick={logOut}><i>(logout)</i></span>
+                  <span onClick={logout}><i>(logout)</i></span>
               </p>
             )
           }
@@ -28,8 +27,7 @@ export class Header extends React.Component {
         	);
         }
 	}
-Header.contextType = AppContext;
-const style = StyleSheet.create({
+	const style = StyleSheet.create({
 	appHeader: {
 	  backgroundColor: '#fff',
 	  borderBottom: '3px solid #e1354b',
@@ -62,6 +60,7 @@ const style = StyleSheet.create({
 	user: PropTypes.object,
 	logout: PropTypes.func,
   };
+
 
   const mapStateToProps = (state) => {
 	return {

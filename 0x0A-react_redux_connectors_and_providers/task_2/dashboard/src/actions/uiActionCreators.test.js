@@ -6,7 +6,7 @@ import { login, logout,
 	displayNotificationDrawer,
 	hideNotificationDrawer,
 	loginRequest,
-	loginSuccess} from "./uiActionCreators";
+	loginSuccess, LOGIN_SUCCESS, LOGIN_FAILURE} from "./uiActionCreators";
 
 configure({ adapter: new Adapter() });
 

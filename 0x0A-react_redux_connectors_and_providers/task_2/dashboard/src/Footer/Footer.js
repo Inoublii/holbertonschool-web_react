@@ -7,21 +7,14 @@ import PropTypes from "prop-types";
 
 export function Footer({ user }) {
 	return (
-		<AppContext.Consumer>
-		  {
-		   (context) => {
-			return (
 			  <div className={css(styles.footer)}>
 				<hr className={css(styles.hrColor)} />
 				<i>
 				  Copyright {getFullYear()} - {getFooterCopy(true)}
 				</i>
-				{context.user.isLoggedIn && <a href="inoublii.github.io"> Contact us</a> }
+				{user && <a href="#">Contact us</a>}
 			  </div>
-			);
-		  }
-		}
-	  </AppContext.Consumer>
+
 	);
   }
 
