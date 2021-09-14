@@ -2,13 +2,13 @@ import { LOGIN, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT, DISPLAY_NOTIFICATION_DRAWE
 import { Map } from "immutable";
 import { logout } from "../actions/uiActionCreators";
 
-export const initialState = {
-	isNotificationDrawerVisible: false,
+export const initialUiState = {
+		isNotificationDrawerVisible: false,
 	isUserLoggedIn: false,
 	user: null,
   };
-  const uiReducer = (state = Map(initialState), action) => {
-	switch (action.type) {
+  export function uiReducer(state = Map(initialUiState), action){
+	  	switch (action.type) {
 	  case DISPLAY_NOTIFICATION_DRAWER:
 		return state.set("isNotificationDrawerVisible", true);
 

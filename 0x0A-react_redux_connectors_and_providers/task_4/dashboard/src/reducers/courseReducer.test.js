@@ -5,7 +5,9 @@ import { configure } from 'enzyme';
 import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS, } from '../actions/courseActionTypes';
 import { fetchCourseSuccess, selectCourse, unSelectCourse,} from '../actions/courseActionCreators';
 import Immutable, { setIn, } from 'immutable';
-import { coursesNormalizer, } from '../schema/courses';
+import coursesNormalizer from '../schema/courses';
+
+
 configure({ adapter: new Adapter() });
 
 describe("Testing the courseReducer", () => {

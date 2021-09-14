@@ -1,10 +1,14 @@
 import { SELECT_COURSE, UNSELECT_COURSE, FETCH_COURSE_SUCCESS, } from '../actions/courseActionTypes';
 import Immutable, { setIn } from 'immutable';
-import { coursesNormalizer, } from '../schema/courses';
-export let initState = [];
+import coursesNormalizer from "../schema/courses";
+import { Map } from "immutable";
 
-export let courseReducer = (state = new Immutable.Map(initState), action) => {
-	let newState = [];
+
+
+export const initialCourseState = [];
+
+export function courseReducer(state = Map(initialCourseState), action) {
+
 	switch (action.type) {
 	  case FETCH_COURSE_SUCCESS:
 		let editedData = [];

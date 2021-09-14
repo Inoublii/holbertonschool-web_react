@@ -76,19 +76,21 @@ describe("<App />", () => {
 
   describe("App Redux", () => {
 	  it("mapStateToProps returns object from display Drawer", () => {
-	  let state = fromJS({
-		isNotificationDrawerVisible: true,
-	  });
-
+		let state = {
+			ui: fromJS({
+			  isNotificationDrawerVisible: true,
+			}),
+		  };
 	  const result = mapStateToProps(state);
 
 	  expect(result).toEqual({ displayDrawer: true });
 	});
 	it("mapStateToProps returns the right object from user ", () => {
-	  let state = fromJS({
-		isUserLoggedIn: true,
-	  });
-
+		let state = {
+			ui: fromJS({
+			  isUserLoggedIn: true
+			}),
+		  }
 	  const result = mapStateToProps(state);
 
 	  expect(result).toEqual({ isLoggedIn: true });
